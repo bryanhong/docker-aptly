@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#### BEGIN APP SPECIFIC VARIABLES
+
+# Name of the container
+APP_NAME=aptly
+# Docker Hub Username or internal registry (e.g. docker-registry.example.com:5000)
+REPO_NAME="myusername"
+
+# Name used on repository signing key
+FULL_NAME="First Last"
+# Email address of the repository key signer
+EMAIL_ADDRESS=user@example.com
+# Password used to encrypt the signing key
+GPG_PASSWORD=repo1234
+# The directory on the Docker host to store repository data
+APTLY_DATADIR=/path/to/lots/ofspace
+# FQDN of the Docker host that the aptly container will run on 
+HOSTNAME=aptly.example.com
+# TCP port that aptly will be reachable on, set to something else if you already
+# have a web server running on your Docker host
+DOCKER_HOST_PORT=80
+
+#### END APP SPECIFIC VARIABLES
+#### BEGIN GENERIC VARIABLES
+  
+# Get an SHA sum of all files involved in building the image so the image can be tagged
+# this will provide assurance that any image with the same tag was built the same way. 
+SHASUM=`find . -type f \
+        -not -path "*/.git/*" \
+        -not -path "*.gitignore*" \
+        -not -path "*builds*" \
+        -not -path "*run.sh*" \
+        -exec shasum {} + | awk '{print $1}' | sort | shasum | cut -c1-4`
+  
+TAG="`date +%Y%m%d`-${SHASUM}"
+
+#### END GENERIC VARIABLES
