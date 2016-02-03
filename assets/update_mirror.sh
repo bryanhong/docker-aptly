@@ -1,6 +1,8 @@
 #! /bin/bash
 set -e
 
+# Automate the initial creation and update of an Ubuntu package mirror in aptly
+
 UBUNTU_RELEASE=trusty
 UPSTREAM_URL="http://archive.ubuntu.com/ubuntu/"
 REPOS=( ${UBUNTU_RELEASE} ${UBUNTU_RELEASE}-updates ${UBUNTU_RELEASE}-security )
