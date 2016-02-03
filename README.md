@@ -1,9 +1,11 @@
 #docker-aptly
 
-Dockerfile and support scripts to run aptly in a container backed by nginx
+Dockerfile and support scripts to run aptly in a container backed by nginx.
 
 from [aptly.info](http://aptly.info): 
 >aptly is a swiss army knife for Debian repository management: it allows you to mirror remote repositories, manage local package repositories, take snapshots, pull new versions of packages along with dependencies, publish as Debian repository.
+
+If you don't plan on customizing the Dockerfile in this repository, simply follow the instructions [here](https://hub.docker.com/r/bryanhong/aptly/) instead.
 
 ##Requirements / Dependencies
 
