@@ -13,6 +13,7 @@ Requirements / Dependencies
 Start the container
 ---------------------
 1. Run (adjust to suit your environment)
+
   ```
   docker run \
   --detach=true \
@@ -27,6 +28,7 @@ Start the container
   -p 80:80 \
   bryanhong/aptly:latest
 ```
+
 2. Wait until the GPG keyrings are created (not 0 bytes) before proceeding (it can take a few minutes). They will be in the bind mount location you chose in above.
 
 Create a mirror of Ubuntu's main repository
@@ -42,12 +44,14 @@ When the script completes, you should have a functional mirror that you can poin
 Point a host at the mirror
 --------------------------
 1. Fetch the public PGP key from your aptly repository and add it to your trusted repositories
+
  ```
  wget http://FQDN.OF.APTLY/aptly_repo_key.pub
  apt-key add aptly_repo_key.pub
  ```
 
 2. Backup then replace /etc/apt/sources.list
+
  ```
  cp /etc/apt/sources.list /etc/apt/sources.list.bak
  echo "deb http://FQDN.OF.APTLY/ ubuntu main" > /etc/apt/sources.list
