@@ -7,6 +7,7 @@ if [[ ! -f /opt/aptly/aptly.sec ]] || [[ ! -f /opt/aptly/aptly.pub ]]; then
 fi
 
 # Import Ubuntu keyrings
+gpg --list-keys
 gpg --no-default-keyring \
     --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg \
     --export | \
