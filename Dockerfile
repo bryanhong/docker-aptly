@@ -31,6 +31,8 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 RUN apt-get -q update        \
  && apt-get -y install aptly \
       bzip2                  \
+      xz-utils               \
+      graphviz               \
       gnupg                  \
       gpgv                   \
       supervisor             \
