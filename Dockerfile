@@ -28,32 +28,39 @@ RUN echo "deb-src http://nginx.org/packages/ubuntu/ trusty nginx" >> /etc/apt/so
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 
 # Update APT repository and install packages
-RUN apt-get -q update        \
- && apt-get -y install aptly \
-      bzip2                  \
-      xz-utils               \
-      graphviz               \
-      gnupg                  \
-      gpgv                   \
-      supervisor             \
-      nginx
-
-# Install GPG Generator 
-COPY assets/gpg_batch.sh /opt/gpg_batch.sh
+RUN apt-get -q update                  \
+ && apt-get -y install aptly           \
+                       bash-completion \
+                       bzip2           \
+                       gnupg           \
+                       gpgv            \
+                       graphviz        \
+                       supervisor      \
+                       nginx           \
+                       wget            \
+                       xz-utils
 
 # Install Aptly Configuration
 COPY assets/aptly.conf /etc/aptly.conf
 
-# Install Mirror Update Script
-COPY assets/update_mirror.sh /opt/update_mirror.sh
+# Enable Aptly Bash completions
+RUN wget https://github.com/aptly-dev/aptly-bash-completion/raw/master/aptly \
+  -O /etc/bash_completion.d/aptly \
+  && echo "if ! shopt -oq posix; then\n\
+  if [ -f /usr/share/bash-completion/bash_completion ]; then\n\
+    . /usr/share/bash-completion/bash_completion\n\
+  elif [ -f /etc/bash_completion ]; then\n\
+    . /etc/bash_completion\n\
+  fi\n\
+fi" >> /etc/bash.bashrc
 
 # Install Nginx Config
 COPY assets/nginx.conf.sh /opt/nginx.conf.sh
 COPY assets/supervisord.nginx.conf /etc/supervisor/conf.d/nginx.conf
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-# Install Startup script
-COPY assets/startup.sh /opt/startup.sh
+# Install scripts
+COPY assets/*.sh /opt/
 
 # Bind mount location
 VOLUME [ "/opt/aptly" ]
