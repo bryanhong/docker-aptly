@@ -7,11 +7,6 @@ UBUNTU_RELEASE=trusty
 UPSTREAM_URL="http://archive.ubuntu.com/ubuntu/"
 REPOS=( ${UBUNTU_RELEASE} ${UBUNTU_RELEASE}-updates ${UBUNTU_RELEASE}-security )
 
-# Export the GPG Public key
-if [[ ! -f /opt/aptly/aptly_repo_key.pub ]]; then
-  gpg --export --armor > /opt/aptly/${HOSTNAME}_signing.key
-fi
-
 # Create repository mirrors if they don't exist
 set +e
 for repo in ${REPOS[@]}; do
@@ -57,6 +52,11 @@ else
     -distribution=${UBUNTU_RELEASE} ${UBUNTU_RELEASE}-merged-`date +%Y%m%d%H`
 fi
 set -e
+
+# Export the GPG Public key
+if [[ ! -f /opt/aptly/public/aptly_repo_signing.key ]]; then
+  gpg --export --armor > /opt/aptly/public/aptly_repo_signing.key
+fi
 
 # Generate Aptly Graph
 aptly graph
