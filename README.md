@@ -66,7 +66,7 @@ When the script completes, you should have a functional mirror that you can poin
 
  ```
  cp /etc/apt/sources.list /etc/apt/sources.list.bak
- echo "deb http://FQDN.OF.APTLY/ ubuntu main" > /etc/apt/sources.list
+ echo "deb http://FQDN.OF.APTLY/ RELEASE_NAME main" > /etc/apt/sources.list
  apt-get update
  ```
  
