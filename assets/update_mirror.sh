@@ -4,15 +4,15 @@ set -e
 # Automate the initial creation and update of an Ubuntu package mirror in aptly
 
 # The variables (as set below) will create a mirror of the Ubuntu Trusty repo 
-# with just the main component, you can add other components like restricted
-# universe etc by adding to the array (separated by spaces).
+# with the main & universe components, you can add other components like restricted
+# multiverse etc by adding to the array (separated by spaces).
 
 # For more detail about each of the variables below refer to: 
 # https://help.ubuntu.com/community/Repositories/CommandLine
 
 UBUNTU_RELEASE=trusty
 UPSTREAM_URL="http://archive.ubuntu.com/ubuntu/"
-COMPONENTS=( main )
+COMPONENTS=( main universe )
 REPOS=( ${UBUNTU_RELEASE} ${UBUNTU_RELEASE}-updates ${UBUNTU_RELEASE}-security )
 
 # Create repository mirrors if they don't exist
