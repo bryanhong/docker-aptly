@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Add Aptly repository
 RUN echo "deb http://repo.aptly.info/ squeeze main" > /etc/apt/sources.list.d/aptly.list
-RUN apt-key adv --keyserver keys.gnupg.net --recv-keys E083A3782A194991
+RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
 
 # Add Nginx repository
 RUN echo "deb http://nginx.org/packages/ubuntu/ trusty nginx" > /etc/apt/sources.list.d/nginx.list
