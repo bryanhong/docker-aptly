@@ -8,5 +8,8 @@ server {
   location / {
     autoindex on;
   }
+  location =/aptly.pub {
+    root /opt/aptly/;
+  }
 }
 EOF
