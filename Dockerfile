@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:14.04
+FROM debian:jessie
 
 MAINTAINER bryan@turbojets.net
 
@@ -20,12 +20,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Add Aptly repository
 RUN echo "deb http://repo.aptly.info/ squeeze main" > /etc/apt/sources.list.d/aptly.list
-RUN apt-key adv --keyserver keys.gnupg.net --recv-keys E083A3782A194991
-
-# Add Nginx repository
-RUN echo "deb http://nginx.org/packages/ubuntu/ trusty nginx" > /etc/apt/sources.list.d/nginx.list
-RUN echo "deb-src http://nginx.org/packages/ubuntu/ trusty nginx" >> /etc/apt/sources.list.d/nginx.list
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN apt-key adv --keyserver keys.gnupg.net --recv-keys 9E3E53F19C7DE460
 
 # Update APT repository and install packages
 RUN apt-get -q update                  \
