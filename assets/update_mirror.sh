@@ -48,8 +48,6 @@ done
 
 echo ${SNAPSHOTARRAY[@]}
 
-#### I STOPPED HERE
-
 # Merge snapshots into a single snapshot with updates applied
 echo "Merging snapshots into one.." 
 aptly snapshot merge -latest                 \
@@ -76,5 +74,4 @@ if [[ ! -f /opt/aptly/public/aptly_repo_signing.key ]]; then
 fi
 
 # Generate Aptly Graph
-aptly graph
-cp `ls -rt /tmp/aptly-graph*.png | tail -n1` /opt/aptly/public/aptly_graph.png
+aptly graph -output /opt/aptly/public/aptly_graph.png
