@@ -3,6 +3,8 @@
 # If the repository GPG keypair doesn't exist, create it.
 if [[ ! -f /opt/aptly/aptly.sec ]] || [[ ! -f /opt/aptly/aptly.pub ]]; then
   /opt/gpg_batch.sh
+  # If your system doesn't have a lot of entropy this may, take a long time
+  # Google how-to create "artificial" entropy if this gets stuck
   gpg --batch --gen-key /opt/gpg_batch
 fi
 

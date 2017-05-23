@@ -86,8 +86,8 @@ Point a host at the mirror
 1. Fetch the public PGP key from your aptly repository and add it to your trusted repositories
 
  ```
- wget http://FQDN.OF.APTLY/aptly_repo_key.pub
- apt-key add aptly_repo_key.pub
+ wget http://FQDN.OF.APTLY/aptly_repo_signing.key
+ apt-key add aptly_repo_signing.key
  ```
 
 2. Backup then replace /etc/apt/sources.list
