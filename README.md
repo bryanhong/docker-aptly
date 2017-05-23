@@ -7,6 +7,8 @@ aptly in a container backed by nginx
 
 >nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP proxy server, originally written by Igor Sysoev [nginx.org](http://nginx.org/en/)
 
+**NOTE:** This container and the scripts within are written to make hosting an Ubuntu mirror "as-close-to-turnkey" as possible. If there is enough demand or I end up building it for my own purposes, I'll publish a branch or separate repo to support a "turnkey" Aptly Docker image for Debian.
+
 Quickstart
 --
 
