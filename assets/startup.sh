@@ -8,6 +8,11 @@ if [[ ! -f /opt/aptly/aptly.sec ]] || [[ ! -f /opt/aptly/aptly.pub ]]; then
   gpg --batch --gen-key /opt/gpg_batch
 fi
 
+# Export the GPG Public key
+if [[ ! -f /opt/aptly/public/aptly_repo_signing.key ]]; then
+  gpg --export --armor > /opt/aptly/public/aptly_repo_signing.key
+fi
+
 # Import Ubuntu keyrings
 gpg --list-keys
 gpg --no-default-keyring \
