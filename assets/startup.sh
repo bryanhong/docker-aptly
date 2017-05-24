@@ -10,6 +10,7 @@ fi
 
 # Export the GPG Public key
 if [[ ! -f /opt/aptly/public/aptly_repo_signing.key ]]; then
+  mkdir -p /opt/aptly/public
   gpg --export --armor > /opt/aptly/public/aptly_repo_signing.key
 fi
 
