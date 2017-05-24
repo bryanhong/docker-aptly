@@ -3,7 +3,6 @@
 source vars
 
 DOCKERFILE="${1:-Dockerfile}"
-SUFFIX=`echo $1 | cut -d. -f2`
 
 docker build -t "${REPO_NAME}/${APP_NAME}:${TAG}" -f ${DOCKERFILE} .
 
