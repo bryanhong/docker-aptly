@@ -7,7 +7,7 @@ aptly in a container backed by nginx
 
 >nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP proxy server, originally written by Igor Sysoev [nginx.org](http://nginx.org/en/)
 
-**NOTE:** This container and the scripts within are written to make hosting an Ubuntu mirror "as-close-to-turnkey" as possible. If there is enough demand or I end up building it for my own purposes, I'll publish a branch or separate repo to support a "turnkey" Aptly Docker image for Debian.
+**NOTE:** This container and the scripts within are written to make hosting an Ubuntu mirror "as-close-to-turnkey" as possible. If you want to host a Debian mirror, you'll need to build the image yourself, see [Building the Container](#building-the-container) below
 
 Quickstart
 --
@@ -116,7 +116,7 @@ git clone https://github.com/bryanhong/docker-aptly.git
 ### Commands and variables
 
 * ```vars```: Variables for Docker registry, the application, and aptly repository data location
-* ```build.sh```: Build the Docker image locally
+* ```build.sh```: Build the Docker image locally, this script will take the name of a Dockerfile as an argument, by default will build Dockerfile.
 * ```run.sh```: Starts the Docker container, it the image hasn't been built locally, it is fetched from the repository set in vars
 * ```push.sh```: Pushes the latest locally built image to the repository set in vars
 * ```shell.sh```: get a shell within the container
@@ -141,6 +141,8 @@ The GPG password you set in ```vars``` is stored in plain text and is visible as
 #### Build the image
 
 1. Run ```./build.sh```
+
+>To build a Debian-based mirror/aptly run ```./build.sh Dockerfile.debian```
 
 #### Start the container
 

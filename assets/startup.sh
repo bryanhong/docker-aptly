@@ -13,14 +13,27 @@ if [[ ! -f /opt/aptly/public/aptly_repo_signing.key ]]; then
   gpg --export --armor > /opt/aptly/public/aptly_repo_signing.key
 fi
 
-# Import Ubuntu keyrings
-gpg --list-keys
-gpg --no-default-keyring \
-    --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg \
-    --export | \
-gpg --no-default-keyring \
-    --keyring trustedkeys.gpg \
-    --import
+# Import Ubuntu keyrings if they exist
+if [[ -f /usr/share/keyrings/ubuntu-archive-keyring.gpg ]]; then
+  gpg --list-keys
+  gpg --no-default-keyring                                     \
+      --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg \
+      --export |                                               \
+  gpg --no-default-keyring                                     \
+      --keyring trustedkeys.gpg                                \
+      --import
+fi
+
+# Import Debian keyrings if they exist
+if [[ -f /usr/share/keyrings/debian-archive-keyring.gpg ]]; then
+  gpg --list-keys
+  gpg --no-default-keyring                                     \
+      --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+      --export |                                               \
+  gpg --no-default-keyring                                     \
+      --keyring trustedkeys.gpg                                \
+      --import
+fi
 
 # Aptly looks in /root/.gnupg for default keyrings
 ln -sf /opt/aptly/aptly.sec /root/.gnupg/secring.gpg

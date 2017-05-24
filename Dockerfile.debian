@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:trusty
+FROM debian:jessie
 
 MAINTAINER bryan@turbojets.net
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DIST=ubuntu
-ENV RELEASE=trusty
+ENV DIST=debian
+ENV RELEASE=jessie
 
 # Add Aptly repository
 RUN echo "deb http://repo.aptly.info/ squeeze main" > /etc/apt/sources.list.d/aptly.list
@@ -63,7 +63,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Install scripts
 COPY assets/*.sh /opt/
-COPY assets/update_mirror/update_mirror_ubuntu.sh /opt/update_mirror.sh
+COPY assets/update_mirror/update_mirror_debian.sh /opt/update_mirror.sh
 
 # Bind mount location
 VOLUME [ "/opt/aptly" ]

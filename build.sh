@@ -2,7 +2,10 @@
 
 source vars
 
-docker build -t "${REPO_NAME}/${APP_NAME}:${TAG}" .
+DOCKERFILE="${1:-Dockerfile}"
+SUFFIX=`echo $1 | cut -d. -f2`
+
+docker build -t "${REPO_NAME}/${APP_NAME}:${TAG}" -f ${DOCKERFILE} .
 
 # If the build was successful (0 exit code)...
 if [ $? -eq 0 ]; then
