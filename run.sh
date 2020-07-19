@@ -17,7 +17,6 @@ echo
 echo -n "Container ID: "
 docker run \
 --detach=true \
---log-driver=syslog \
 --name="${APP_NAME}" \
 --restart=always \
 -e FULL_NAME="${FULL_NAME}" \
@@ -25,9 +24,11 @@ docker run \
 -e GPG_PASSWORD="${GPG_PASSWORD}" \
 -e HOSTNAME="${HOSTNAME}" \
 -v ${APTLY_DATADIR}:/opt/aptly \
+-v ${GPG_DATA}:/root/.gnupg \
 -p ${DOCKER_HOST_PORT}:80 \
 ${LATESTIMAGE}
 # Other useful options
+#--log-driver=syslog \ # if you want Docker logs to go to syslog (Linux)
 # -p DOCKERHOST_PORT:CONTAINER_PORT \
 # -e "ENVIRONMENT_VARIABLE_NAME=VALUE" \
 # -v /DOCKERHOST/PATH:/CONTAINER/PATH \
