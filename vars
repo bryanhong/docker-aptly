@@ -15,6 +15,8 @@ EMAIL_ADDRESS=user@example.com
 GPG_PASSWORD=repo1234
 # The directory on the Docker host to store repository data
 APTLY_DATADIR=/tmp/path/to/lots/of/space
+# The directory on the Docker host to store gpg keys
+GPG_DATA=/tmp/path/to/secure/place
 # FQDN of the Docker host that the aptly container will run on 
 HOSTNAME=aptly.example.com
 # TCP port that aptly will be reachable on, set to something else if you already

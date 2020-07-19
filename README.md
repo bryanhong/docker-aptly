@@ -36,10 +36,6 @@ docker run                                               \
 ```  
 run the container in the background  
 ```
---log-driver=syslog
-```  
-send nginx logs to syslog on the Docker host  (requires Docker 1.6 or higher)  
-```
 --name="aptly"
 ```  
 name of the container  
@@ -68,6 +64,10 @@ the hostname of the Docker host that this container is running on
 ```  
 path that aptly will use to store its data : mapped path in the container  
 ```
+--volume /dockerhost/dir/for/gpg/secrets:/root/.gnupg
+```
+path that will store gnu gpg keys used to sign published aptly repositories
+```
 --publish 80:80
 ```  
 Docker host port : mapped port in the container
@@ -75,8 +75,8 @@ Docker host port : mapped port in the container
 Create a mirror of Ubuntu's main repository
 --
 1. The initial download of the repository may take quite some time depending on your bandwidth limits, it may be in your best interest to open a screen or tmux session before proceeding.
-2. Attach to the container ```docker exec -it aptly /bin/bash```
-3. By default, ```/opt/update_mirror.sh``` will automate the creation of an Ubuntu 14.04 Trusty repository with the main and universe components, you can adjust the variables in the script to suit your needs.
+2. Attach to the container ```docker exec -it aptly /bin/bash``` or run ```shell.sh```
+3. By default, ```/opt/update_mirror.sh``` will automate the creation of an Ubuntu 20.04 "Focal" repository with the main and universe components, you can adjust the variables in the script to suit your needs.
 4. Run ```/opt/update_mirror.sh```
 5. If the script fails due to network disconnects etc, just re-run it.
 
